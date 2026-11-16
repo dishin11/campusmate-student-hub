@@ -3,393 +3,636 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CampusMate – Student Resource Hub</title>
+  <title>CampusMate – Your Campus. Your Community. Your Success.</title>
   <meta
     name="description"
-    content="CampusMate brings academic resources, student clubs, career opportunities and wellbeing support together in one simple place for college students."
+    content="CampusMate is an all-in-one student resource hub: academic support, student clubs, career growth and wellbeing resources in one calm, organised place."
   />
+
+  <!-- Inter font, with the system font stack as a fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Skip link: lets keyboard users jump straight to the main content -->
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- ================= HEADER / NAVIGATION ================= -->
+  <!-- ==========================================================
+       ICON SPRITE
+       Every icon on the page is drawn once here and reused with
+       <svg class="icon"><use href="#i-name"></use></svg>.
+       It keeps the HTML small and the icons consistent.
+       ========================================================== -->
+  <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-cap" viewBox="0 0 24 24">
+      <path d="M22 10 12 5 2 10l10 5 10-5z" />
+      <path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" />
+    </symbol>
+    <symbol id="i-book" viewBox="0 0 24 24">
+      <path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z" />
+      <path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z" />
+    </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9.5" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.9" />
+    </symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24">
+      <rect x="2" y="7" width="20" height="14" rx="2" />
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24">
+      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.7 8.8-8.7a5.5 5.5 0 0 0 0-7.8z" />
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24">
+      <path d="M8 5l11 7-11 7z" />
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M5 12h14M13 5l7 7-7 7" />
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M16 3v4M8 3v4M3 11h18" />
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="M20 6 9 17l-5-5" />
+    </symbol>
+    <symbol id="i-help" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 9a2.6 2.6 0 1 1 3.6 2.4c-.7.3-1.1.9-1.1 1.7" />
+      <path d="M12 17h.01" />
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24">
+      <rect x="4" y="10" width="16" height="11" rx="2" />
+      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+    </symbol>
+    <symbol id="i-device" viewBox="0 0 24 24">
+      <rect x="6" y="2" width="12" height="20" rx="3" />
+      <path d="M11 18h2" />
+    </symbol>
+    <symbol id="i-code" viewBox="0 0 24 24">
+      <path d="M8 6 2 12l6 6M16 6l6 6-6 6" />
+    </symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18" />
+    </symbol>
+    <symbol id="i-quote" viewBox="0 0 24 24">
+      <path d="M7 7h4v6a4 4 0 0 1-4 4M14 7h4v6a4 4 0 0 1-4 4" />
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6L6 18" />
+    </symbol>
+  </svg>
+
+  <!-- ================= HEADER ================= -->
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="#top">
-        <span class="logo-mark">CM</span>
-        <span class="logo-text">CampusMate</span>
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">
+        <span class="brand-mark">
+          <svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg>
+        </span>
+        <span class="brand-name">CampusMate</span>
       </a>
 
-      <nav class="site-nav" aria-label="Main navigation">
+      <nav class="main-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="#academics">Academics</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#resources">Resources</a></li>
           <li><a href="#clubs">Clubs</a></li>
-          <li><a href="#careers">Careers</a></li>
+          <li><a href="#career">Career</a></li>
           <li><a href="#wellbeing">Wellbeing</a></li>
-          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </nav>
+
+      <a class="btn btn-primary btn-sm" href="#library">Get Started</a>
     </div>
   </header>
 
   <main id="main">
 
     <!-- ================= HERO ================= -->
-    <section class="hero" id="top">
-      <div class="container hero-inner">
-        <p class="eyebrow">Student Resource Hub</p>
-        <h1>Everything a college student needs, in one place.</h1>
-        <p class="hero-text">
-          Academic material, student communities, career opportunities and wellbeing
-          support are usually scattered across dozens of websites and chat groups.
-          CampusMate gives you one organised starting point for all of it.
-        </p>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
 
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#academics">Explore resources</a>
-          <a class="btn btn-ghost" href="#faq">Read the FAQs</a>
+        <div class="hero-copy">
+          <h1>
+            Your Campus.<br />
+            Your Community.<br />
+            <span class="accent">Your Success.</span>
+          </h1>
+          <p class="hero-text">
+            CampusMate is your all-in-one student resource hub — supporting your
+            academics, campus life, career growth, and wellbeing.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#library">
+              Explore Resources
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+            <a class="btn btn-outline" href="#tour">
+              <svg class="icon" aria-hidden="true"><use href="#i-play"></use></svg>
+              Take the tour
+            </a>
+          </div>
+
+          <p class="hero-note">
+            <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+            Free to use · No sign-up · Works on any device
+          </p>
         </div>
 
-        <!-- Quick jump cards -->
-        <ul class="hero-grid">
-          <li>
-            <a class="jump-card" href="#academics">
-              <span class="jump-icon" aria-hidden="true">📚</span>
-              <span class="jump-title">Academic Support</span>
-              <span class="jump-desc">Notes, courses and study material</span>
+        <!-- Photo with three floating info cards -->
+        <div class="hero-visual">
+          <div class="hero-photo" role="img"
+               aria-label="Three students smiling together while working on a laptop"></div>
+
+          <div class="float-card float-1">
+            <span class="float-icon">
+              <svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>
+            </span>
+            <span>
+              <strong>Stay Organized</strong>
+              <small>Plan, Track, Succeed</small>
+            </span>
+          </div>
+
+          <div class="float-card float-2">
+            <span class="float-icon">
+              <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
+            </span>
+            <span>
+              <strong>Connect</strong>
+              <small>Clubs, Teams, Friends</small>
+            </span>
+          </div>
+
+          <div class="float-card float-3">
+            <span class="float-icon">
+              <svg class="icon" aria-hidden="true"><use href="#i-briefcase"></use></svg>
+            </span>
+            <span>
+              <strong>Grow Your Career</strong>
+              <small>Internships &amp; More</small>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= PILLARS ================= -->
+    <section class="section pillars" id="resources">
+      <div class="container">
+        <header class="section-head center">
+          <p class="eyebrow">Everything You Need</p>
+          <h2>Thrive in Every Part of Campus Life</h2>
+        </header>
+
+        <div class="pillar-grid">
+          <article class="pillar-card" id="academics">
+            <span class="icon-badge">
+              <svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg>
+            </span>
+            <h3>Academic Support</h3>
+            <p>Study smarter, manage deadlines, and access trusted academic tools.</p>
+            <a class="explore" href="#library">
+              Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
             </a>
+          </article>
+
+          <article class="pillar-card" id="clubs">
+            <span class="icon-badge">
+              <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
+            </span>
+            <h3>Student Clubs</h3>
+            <p>Find your people, join clubs, and pursue your passions.</p>
+            <a class="explore" href="#library">
+              Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </article>
+
+          <article class="pillar-card" id="career">
+            <span class="icon-badge">
+              <svg class="icon" aria-hidden="true"><use href="#i-briefcase"></use></svg>
+            </span>
+            <h3>Career Growth</h3>
+            <p>Internships, skills, and resources for career confidence.</p>
+            <a class="explore" href="#library">
+              Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </article>
+
+          <article class="pillar-card" id="wellbeing">
+            <span class="icon-badge">
+              <svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg>
+            </span>
+            <h3>Wellbeing</h3>
+            <p>Support for mental, physical, and emotional health.</p>
+            <a class="explore" href="#library">
+              Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TRUST STRIP ================= -->
+    <section class="trust">
+      <div class="container">
+        <p class="trust-label">Trusted by students at</p>
+        <ul class="trust-logos">
+          <li>
+            <svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg>
+            State University
           </li>
           <li>
-            <a class="jump-card" href="#clubs">
-              <span class="jump-icon" aria-hidden="true">🤝</span>
-              <span class="jump-title">Clubs &amp; Communities</span>
-              <span class="jump-desc">Find your people on campus</span>
-            </a>
+            <svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>
+            Riverton University
           </li>
           <li>
-            <a class="jump-card" href="#careers">
-              <span class="jump-icon" aria-hidden="true">🚀</span>
-              <span class="jump-title">Career Growth</span>
-              <span class="jump-desc">Internships, skills and projects</span>
-            </a>
+            <svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg>
+            Maple University
           </li>
           <li>
-            <a class="jump-card" href="#wellbeing">
-              <span class="jump-icon" aria-hidden="true">💚</span>
-              <span class="jump-title">Student Wellbeing</span>
-              <span class="jump-desc">Support when things get heavy</span>
-            </a>
+            <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
+            Lakeside University
           </li>
         </ul>
-      </div>
-    </section>
-
-    <!-- ================= ACADEMIC SUPPORT ================= -->
-    <section class="section" id="academics">
-      <div class="container">
-        <header class="section-head">
-          <p class="section-tag">01 — Academics</p>
-          <h2>Academic Support</h2>
-          <p class="section-text">
-            Reliable places to learn, revise and catch up when a lecture did not
-            make sense the first time.
-          </p>
-        </header>
-
-        <div class="card-grid">
-          <article class="card">
-            <h3>NPTEL</h3>
-            <p>
-              Free engineering and science courses recorded by IIT and IISc faculty.
-              Useful for strengthening core subjects and for certification.
-            </p>
-            <a class="card-link" href="https://nptel.ac.in/" target="_blank" rel="noopener">
-              Visit NPTEL <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <article class="card">
-            <h3>SWAYAM</h3>
-            <p>
-              A government platform with school, undergraduate and postgraduate
-              courses from Indian universities, many of them free to audit.
-            </p>
-            <a class="card-link" href="https://swayam.gov.in/" target="_blank" rel="noopener">
-              Visit SWAYAM <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <article class="card">
-            <h3>MIT OpenCourseWare</h3>
-            <p>
-              Lecture notes, assignments and exams from MIT courses. Helpful when you
-              want a second explanation of a difficult topic.
-            </p>
-            <a class="card-link" href="https://ocw.mit.edu/" target="_blank" rel="noopener">
-              Visit MIT OCW <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <article class="card">
-            <h3>Khan Academy</h3>
-            <p>
-              Short, beginner-friendly explanations of maths, physics and computing
-              basics — a good place to rebuild fundamentals.
-            </p>
-            <a class="card-link" href="https://www.khanacademy.org/" target="_blank" rel="noopener">
-              Visit Khan Academy <span aria-hidden="true">→</span>
-            </a>
-          </article>
-        </div>
-
-        <p class="note">
-          <strong>Study tip:</strong> pick one platform for a subject and finish it,
-          instead of collecting links from five different sites.
+        <p class="trust-note">
+          Sample placeholders — replace these with your real partner colleges.
         </p>
       </div>
     </section>
 
-    <!-- ================= CLUBS AND COMMUNITIES ================= -->
-    <section class="section section-alt" id="clubs">
+    <!-- ================= RESOURCE LIBRARY (filterable) ================= -->
+    <section class="section library" id="library">
       <div class="container">
-        <header class="section-head">
-          <p class="section-tag">02 — Community</p>
-          <h2>Clubs &amp; Communities</h2>
+
+        <header class="section-head center">
+          <p class="eyebrow">Resource Library</p>
+          <h2>Find what you need, faster</h2>
           <p class="section-text">
-            College is more than lectures. Clubs are where you build a team, learn to
-            present, and meet seniors who can guide you.
+            Tap a filter to narrow the list. It works instantly — no page reload
+            and no JavaScript.
           </p>
         </header>
 
-        <div class="card-grid">
-          <article class="card">
-            <h3>Technical clubs</h3>
-            <p>
-              Coding, robotics, AI/ML or electronics clubs. They usually run workshops
-              and help teams prepare for hackathons.
-            </p>
-            <p class="card-meta">Ask your department office for the current club list.</p>
-          </article>
+        <!--
+          THE FILTER
+          Five hidden radio buttons. CSS watches which one is checked and shows
+          only the matching cards. This is the whole "filter feature" — no JS.
+        -->
+        <div class="filter">
+          <input class="filter-input" type="radio" name="area" id="f-all" checked />
+          <input class="filter-input" type="radio" name="area" id="f-academics" />
+          <input class="filter-input" type="radio" name="area" id="f-clubs" />
+          <input class="filter-input" type="radio" name="area" id="f-career" />
+          <input class="filter-input" type="radio" name="area" id="f-wellbeing" />
 
-          <article class="card">
-            <h3>Cultural &amp; literary clubs</h3>
-            <p>
-              Debate, drama, music, dance and media clubs. Great for confidence,
-              communication and campus events.
-            </p>
-            <p class="card-meta">Most clubs recruit during the first weeks of a semester.</p>
-          </article>
+          <div class="filter-tabs" role="group" aria-label="Filter resources by area">
+            <label for="f-all">All</label>
+            <label for="f-academics">Academics</label>
+            <label for="f-clubs">Clubs</label>
+            <label for="f-career">Career</label>
+            <label for="f-wellbeing">Wellbeing</label>
+          </div>
 
-          <article class="card">
-            <h3>Open-source communities</h3>
-            <p>
-              Communities like GitHub and freeCodeCamp let you contribute to real
-              projects and learn from developers outside your college.
-            </p>
-            <a class="card-link" href="https://github.com/" target="_blank" rel="noopener">
-              Explore GitHub <span aria-hidden="true">→</span>
-            </a>
-          </article>
+          <ul class="lib-grid">
+            <li class="lib-card" data-cat="academics">
+              <span class="tag">Academics</span>
+              <h3>NPTEL</h3>
+              <p>Free engineering and science courses recorded by IIT and IISc faculty.</p>
+              <a class="lib-link" href="https://nptel.ac.in/" target="_blank" rel="noopener">
+                Open site <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
 
-          <article class="card">
-            <h3>Hackathon teams</h3>
-            <p>
-              Hackathons are usually better with a mixed team — one designer, one
-              backend developer, one presenter. Start looking early.
-            </p>
-            <a class="card-link" href="https://devpost.com/" target="_blank" rel="noopener">
-              Browse Devpost <span aria-hidden="true">→</span>
-            </a>
-          </article>
+            <li class="lib-card" data-cat="academics">
+              <span class="tag">Academics</span>
+              <h3>SWAYAM</h3>
+              <p>Government platform with undergraduate and postgraduate courses.</p>
+              <a class="lib-link" href="https://swayam.gov.in/" target="_blank" rel="noopener">
+                Open site <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
+
+            <li class="lib-card" data-cat="academics">
+              <span class="tag">Academics</span>
+              <h3>MIT OpenCourseWare</h3>
+              <p>Lecture notes, assignments and exams from MIT courses.</p>
+              <a class="lib-link" href="https://ocw.mit.edu/" target="_blank" rel="noopener">
+                Open site <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
+
+            <li class="lib-card" data-cat="academics">
+              <span class="tag">Academics</span>
+              <h3>Khan Academy</h3>
+              <p>Short lessons that rebuild maths and science fundamentals.</p>
+              <a class="lib-link" href="https://www.khanacademy.org/" target="_blank" rel="noopener">
+                Open site <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
+
+            <li class="lib-card" data-cat="clubs">
+              <span class="tag">Clubs</span>
+              <h3>GitHub</h3>
+              <p>Find open-source projects and developer communities to join.</p>
+              <a class="lib-link" href="https://github.com/" target="_blank" rel="noopener">
+                Open site <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
+
+            <li class="lib-card" data-cat="clubs">
+              <span class="tag">Clubs</span>
+              <h3>Stack Overflow</h3>
+              <p>Ask technical questions and learn from other developers' answers.</p>
+              <a class="lib-link" href="https://stackoverflow.com/" target="_blank" rel="noopener">
+                Open site <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
+
+            <li class="lib-card" data-cat="career">
+              <span class="tag">Career</span>
+              <h3>Internshala</h3>
+              <p>Internships and training programmes for students across India.</p>
+              <a class="lib-link" href="https://internshala.com/" target="_blank" rel="noopener">
+                Open site <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
+
+            <li class="lib-card" data-cat="career">
+              <span class="tag">Career</span>
+              <h3>HackerRank</h3>
+              <p>Practice coding problems every week to prepare for interviews.</p>
+              <a class="lib-link" href="https://www.hackerrank.com/" target="_blank" rel="noopener">
+                Open site <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
+
+            <li class="lib-card" data-cat="career">
+              <span class="tag">Career</span>
+              <h3>LinkedIn</h3>
+              <p>Build a profile that recruiters and alumni can actually find.</p>
+              <a class="lib-link" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+                Open site <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
+
+            <li class="lib-card" data-cat="wellbeing">
+              <span class="tag">Wellbeing</span>
+              <h3>Tele-MANAS</h3>
+              <p>Free national mental health helpline, available 24×7 on 14416.</p>
+              <a class="lib-link" href="https://telemanas.mohfw.gov.in/" target="_blank" rel="noopener">
+                Open site <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
+
+            <li class="lib-card" data-cat="wellbeing">
+              <span class="tag">Wellbeing</span>
+              <h3>WHO</h3>
+              <p>Practical guidance on stress, sleep and healthy daily habits.</p>
+              <a class="lib-link" href="https://www.who.int/" target="_blank" rel="noopener">
+                Open site <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
+
+            <li class="lib-card" data-cat="wellbeing">
+              <span class="tag">Wellbeing</span>
+              <h3>College counsellor</h3>
+              <p>Your campus counselling cell is the fastest support available.</p>
+              <a class="lib-link" href="#faq">
+                Read how <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </li>
+          </ul>
         </div>
+
       </div>
     </section>
 
-    <!-- ================= CAREER GROWTH ================= -->
-    <section class="section" id="careers">
-      <div class="container">
-        <header class="section-head">
-          <p class="section-tag">03 — Career</p>
-          <h2>Career Growth</h2>
+    <!-- ================= STORIES ================= -->
+    <section class="section stories" id="stories">
+      <div class="container stories-grid">
+
+        <!-- Hidden checkbox powers the "More stories" toggle -->
+        <input class="toggle-input" type="checkbox" id="more-stories" />
+
+        <div class="stories-copy">
+          <p class="eyebrow">Real Stories</p>
+          <h2>Brighter Futures.</h2>
           <p class="section-text">
-            Start small and early: a clear resume, one good project and a few real
-            applications are worth more than a long list of certificates.
+            How other students are making the most of their campus experience.
           </p>
-        </header>
-
-        <div class="card-grid">
-          <article class="card">
-            <h3>Internships</h3>
-            <p>
-              Internshala lists internships and live training programmes for students
-              across India, with filters for work-from-home roles.
-            </p>
-            <a class="card-link" href="https://internshala.com/" target="_blank" rel="noopener">
-              Visit Internshala <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <article class="card">
-            <h3>Practice coding</h3>
-            <p>
-              Solve a few problems every week to keep your fundamentals sharp and to
-              prepare for technical interview rounds.
-            </p>
-            <a class="card-link" href="https://www.hackerrank.com/" target="_blank" rel="noopener">
-              Visit HackerRank <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <article class="card">
-            <h3>Build a portfolio</h3>
-            <p>
-              Host your projects on GitHub and publish them with GitHub Pages. A live
-              link is far more convincing than a screenshot.
-            </p>
-            <a class="card-link" href="https://pages.github.com/" target="_blank" rel="noopener">
-              Learn GitHub Pages <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <article class="card">
-            <h3>Learn a skill properly</h3>
-            <p>
-              freeCodeCamp offers free, project-based tracks in web development and
-              programming, with certificates at the end.
-            </p>
-            <a class="card-link" href="https://www.freecodecamp.org/" target="_blank" rel="noopener">
-              Visit freeCodeCamp <span aria-hidden="true">→</span>
-            </a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= STUDENT WELLBEING ================= -->
-    <section class="section section-alt" id="wellbeing">
-      <div class="container">
-        <header class="section-head">
-          <p class="section-tag">04 — Wellbeing</p>
-          <h2>Student Wellbeing</h2>
-          <p class="section-text">
-            Marks are important, but they are not the whole picture. Sleep, food,
-            friends and asking for help are part of doing well.
-          </p>
-        </header>
-
-        <div class="card-grid">
-          <article class="card">
-            <h3>Talk to someone</h3>
-            <p>
-              Your college counsellor or a trusted teacher is usually the fastest
-              support available. You do not need a &quot;big enough&quot; reason to ask.
-            </p>
-            <p class="card-meta">Check your college notice board for counselling hours.</p>
-          </article>
-
-          <article class="card">
-            <h3>Helplines in India</h3>
-            <p>
-              Tele-MANAS is a free national mental health helpline available 24×7,
-              in multiple languages.
-            </p>
-            <a class="card-link" href="https://telemanas.mohfw.gov.in/" target="_blank" rel="noopener">
-              Tele-MANAS: 14416 <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <article class="card">
-            <h3>Manage exam stress</h3>
-            <p>
-              WHO publishes short, practical guides on stress, sleep and staying
-              healthy during demanding study periods.
-            </p>
-            <a class="card-link" href="https://www.who.int/" target="_blank" rel="noopener">
-              Visit WHO <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <article class="card">
-            <h3>Balance and rest</h3>
-            <p>
-              Plan your week around fixed sleep and one non-academic activity. A tired
-              brain studies slower, not longer.
-            </p>
-            <p class="card-meta">Small, repeatable habits beat last-night cramming.</p>
-          </article>
+          <label class="btn btn-outline btn-sm stories-toggle" for="more-stories">
+            <span class="more-label">More Stories</span>
+            <span class="less-label">Show Less</span>
+          </label>
         </div>
 
-        <p class="note note-warn">
-          CampusMate is an informational page, not a medical or counselling service.
-          In an emergency, contact local emergency services or your college
-          authorities immediately.
-        </p>
+        <div class="stories-panel">
+          <div class="stories-cards">
+            <figure class="quote-card">
+              <svg class="icon quote-icon" aria-hidden="true"><use href="#i-quote"></use></svg>
+              <blockquote>
+                "CampusMate helped me stay organised, connected, and focused on my
+                goals. It's exactly what every student needs."
+              </blockquote>
+              <figcaption>
+                <span class="avatar">AS</span>
+                <span>
+                  <strong>Ava S.</strong>
+                  <small>Student, State University</small>
+                </span>
+              </figcaption>
+            </figure>
+
+            <figure class="quote-card">
+              <svg class="icon quote-icon" aria-hidden="true"><use href="#i-quote"></use></svg>
+              <blockquote>
+                "I found my club, my internship, and my study resources all in one
+                place. CampusMate is a game-changer."
+              </blockquote>
+              <figcaption>
+                <span class="avatar">LT</span>
+                <span>
+                  <strong>Liam T.</strong>
+                  <small>Student, Riverton University</small>
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="stories-extra">
+            <figure class="quote-card">
+              <svg class="icon quote-icon" aria-hidden="true"><use href="#i-quote"></use></svg>
+              <blockquote>
+                "The wellbeing page is the part I open most. Knowing where to ask for
+                help made a hard semester much easier."
+              </blockquote>
+              <figcaption>
+                <span class="avatar">MR</span>
+                <span>
+                  <strong>Maya R.</strong>
+                  <small>Student, Maple University</small>
+                </span>
+              </figcaption>
+            </figure>
+
+            <figure class="quote-card">
+              <svg class="icon quote-icon" aria-hidden="true"><use href="#i-quote"></use></svg>
+              <blockquote>
+                "I stopped saving twenty links in my notes. Everything I need is on one
+                page, and it loads instantly."
+              </blockquote>
+              <figcaption>
+                <span class="avatar">NK</span>
+                <span>
+                  <strong>Noah K.</strong>
+                  <small>Student, Lakeside University</small>
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- ================= FAQ ================= -->
-    <section class="section" id="faq">
-      <div class="container narrow">
-        <header class="section-head">
-          <p class="section-tag">05 — Questions</p>
+    <section class="section faq" id="faq">
+      <div class="container">
+        <header class="section-head center">
+          <p class="eyebrow">FAQ</p>
           <h2>Frequently Asked Questions</h2>
-          <p class="section-text">Click a question to open the answer.</p>
         </header>
 
-        <!-- <details> and <summary> give us an accordion with no JavaScript -->
-        <details class="faq-item" open>
-          <summary>What is CampusMate?</summary>
-          <p>
-            CampusMate is a single page that collects useful resources for college
-            students — academic material, clubs, career links and wellbeing support —
-            so you do not have to search many sites at once.
-          </p>
-        </details>
+        <div class="faq-list">
+          <details open>
+            <summary>
+              <span class="faq-icon">
+                <svg class="icon" aria-hidden="true"><use href="#i-help"></use></svg>
+              </span>
+              What is CampusMate?
+            </summary>
+            <p>
+              CampusMate is a student resource hub that brings together academic
+              support, student clubs, career opportunities and wellbeing resources in
+              one easy-to-use platform.
+            </p>
+          </details>
 
-        <details class="faq-item">
-          <summary>Is CampusMate free to use?</summary>
-          <p>
-            Yes. The website itself is free, and every resource linked from it is a
-            publicly available website.
-          </p>
-        </details>
+          <details>
+            <summary>
+              <span class="faq-icon">
+                <svg class="icon" aria-hidden="true"><use href="#i-help"></use></svg>
+              </span>
+              Is CampusMate free to use?
+            </summary>
+            <p>
+              Yes. The site is completely free, and every resource it links to is a
+              publicly available website.
+            </p>
+          </details>
 
-        <details class="faq-item">
-          <summary>Do I need to create an account?</summary>
-          <p>
-            No. There is no login, no sign-up and no data collection. You just open the
-            page and use the links.
-          </p>
-        </details>
+          <details>
+            <summary>
+              <span class="faq-icon">
+                <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
+              </span>
+              How do I join a club?
+            </summary>
+            <p>
+              Start with the Clubs filter in the resource library, then check your
+              department notice board and college website for the current recruitment
+              dates. Most clubs recruit in the first weeks of a semester.
+            </p>
+          </details>
 
-        <details class="faq-item">
-          <summary>Which technologies were used to build it?</summary>
-          <p>
-            Only HTML5 for the structure and CSS3 for the design and responsive
-            layout. No JavaScript, no frameworks and no build tools.
-          </p>
-        </details>
+          <details>
+            <summary>
+              <span class="faq-icon">
+                <svg class="icon" aria-hidden="true"><use href="#i-device"></use></svg>
+              </span>
+              Can I access CampusMate on my mobile device?
+            </summary>
+            <p>
+              Yes. The layout is responsive, so it adapts to phones, tablets and
+              desktops without a separate app.
+            </p>
+          </details>
 
-        <details class="faq-item">
-          <summary>Are the resources official college resources?</summary>
-          <p>
-            No. The links point to well-known public learning platforms. Your own
-            college website, library and notice boards remain the official source for
-            course and club information.
-          </p>
-        </details>
+          <details>
+            <summary>
+              <span class="faq-icon">
+                <svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg>
+              </span>
+              Do I need an account, or is my data collected?
+            </summary>
+            <p>
+              No account is needed and nothing is stored. There are no cookies, no
+              analytics and no forms on this prototype.
+            </p>
+          </details>
 
-        <details class="faq-item">
-          <summary>Will more features be added later?</summary>
-          <p>
-            The plan is to replace the generic links with verified college-specific
-            resources, and later add a search feature once JavaScript and a backend are
-            part of the project.
-          </p>
-        </details>
+          <details>
+            <summary>
+              <span class="faq-icon">
+                <svg class="icon" aria-hidden="true"><use href="#i-code"></use></svg>
+              </span>
+              Which technologies were used to build it?
+            </summary>
+            <p>
+              HTML5 and CSS3 only. The filter, the review toggle, the FAQ accordion and
+              the tour pop-up are all built with HTML and CSS — no JavaScript.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA BAND ================= -->
+    <section class="cta-band">
+      <div class="container cta-inner">
+
+        <div class="cta-left">
+          <a class="brand brand-light" href="#home">
+            <span class="brand-mark">
+              <svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg>
+            </span>
+            <span class="brand-name">CampusMate</span>
+          </a>
+          <h2>You don't have to do it alone.</h2>
+        </div>
+
+        <div class="cta-right">
+          <p>Resources, community, and support — every step of the way.</p>
+          <div class="cta-actions">
+            <a class="btn btn-light" href="#library">Get Started</a>
+            <a class="btn btn-ghost-light" href="#faq">Learn More</a>
+          </div>
+          <div class="socials">
+            <a href="https://github.com/dishin11" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg class="icon" aria-hidden="true"><use href="#i-code"></use></svg>
+            </a>
+            <a href="#stories" aria-label="Student stories">
+              <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
+            </a>
+            <a href="#library" aria-label="Resource library">
+              <svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg>
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -398,29 +641,57 @@
   <!-- ================= FOOTER ================= -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div>
-        <p class="footer-brand">CampusMate</p>
-        <p class="footer-text">
-          A student resource hub built with HTML and CSS. Frontend prototype.
-        </p>
-      </div>
-
+      <p>© 2026 CampusMate · A frontend prototype built with HTML and CSS.</p>
       <nav aria-label="Footer navigation">
-        <ul class="footer-links">
-          <li><a href="#academics">Academics</a></li>
-          <li><a href="#clubs">Clubs</a></li>
-          <li><a href="#careers">Careers</a></li>
-          <li><a href="#wellbeing">Wellbeing</a></li>
-          <li><a href="#faq">FAQs</a></li>
+        <ul>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#library">Library</a></li>
+          <li><a href="#stories">Stories</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#home">Back to top ↑</a></li>
         </ul>
       </nav>
     </div>
-
-    <div class="container footer-bottom">
-      <p>© 2026 CampusMate. Built for learning and sharing.</p>
-      <a class="back-top" href="#top">Back to top ↑</a>
-    </div>
   </footer>
+
+  <!-- ==========================================================
+       TOUR POP-UP
+       Opens when the address bar ends in #tour, which is what the
+       "Take the tour" link does. CSS shows it — no JavaScript.
+       ========================================================== -->
+  <div class="modal" id="tour" role="dialog" aria-labelledby="tour-title">
+    <a class="modal-backdrop" href="#home" aria-label="Close the tour"></a>
+    <div class="modal-card">
+      <a class="modal-close" href="#home" aria-label="Close">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </a>
+      <p class="eyebrow">Quick Tour</p>
+      <h2 id="tour-title">What's inside CampusMate</h2>
+      <ul class="tour-list">
+        <li>
+          <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span>
+          <span><strong>Academic Support</strong> — free courses, notes and revision material.</span>
+        </li>
+        <li>
+          <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
+          <span><strong>Student Clubs</strong> — how to find and join communities on campus.</span>
+        </li>
+        <li>
+          <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"></use></svg></span>
+          <span><strong>Career Growth</strong> — internships, practice and portfolio links.</span>
+        </li>
+        <li>
+          <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+          <span><strong>Wellbeing</strong> — counselling and helpline information.</span>
+        </li>
+      </ul>
+      <p class="tour-note">
+        Everything is one page: use the filters to narrow the library, and the FAQ for
+        quick answers.
+      </p>
+      <a class="btn btn-primary" href="#library">Start exploring</a>
+    </div>
+  </div>
 
 </body>
 </html>
