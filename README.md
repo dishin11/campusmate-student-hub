@@ -22,7 +22,7 @@ resources that are actually useful.
 | Section | What it does |
 | --- | --- |
 | **Academic Support** | Links to free learning platforms (NPTEL, SWAYAM, MIT OpenCourseWare, Khan Academy) for notes, revision and second explanations. |
-| **Clubs & Communities** | Explains the kinds of campus communities available and links to open-source and hackathon platforms. |
+| **Clubs & Communities** | Explains the kinds of campus communities available and links to open-source developer platforms. |
 | **Career Growth** | Internship listings, coding practice, portfolio hosting and free project-based learning. |
 | **Student Wellbeing** | Counselling guidance, a national mental health helpline, and stress-management resources. |
 | **FAQs** | An expandable accordion answering common questions — built with `<details>` and `<summary>`, so it works without JavaScript. |
@@ -81,7 +81,7 @@ extension for auto-reload.
 
 ## Roadmap
 
-- [ ] Replace generic links with verified IIIT Raipur / Hack-A-Sol specific resources
+- [ ] Replace generic links with verified college-specific resources
 - [ ] Add a search and filter box (needs JavaScript)
 - [ ] Add a "submit a resource" form (needs a backend)
 - [ ] Add a light/dark theme switch
@@ -89,6 +89,6 @@ extension for auto-reload.
 
 ## Author
 
-**Dishin** — built as a learning project for the Hack-A-Sol hackathon at IIIT Raipur.
+**Dishin** — built as a learning project to practise HTML and CSS.
 
 If you found a broken link or have a resource worth adding, feel free to open an issue.
