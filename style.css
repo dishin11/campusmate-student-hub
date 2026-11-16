@@ -1,0 +1,583 @@
+/* =========================================================
+   CampusMate – Student Resource Hub
+   style.css
+
+   Structure of this file:
+   1. Design tokens (colours, spacing, fonts)
+   2. Base and reset
+   3. Layout helpers
+   4. Header and navigation
+   5. Hero
+   6. Sections and cards
+   7. FAQ accordion
+   8. Footer
+   9. Responsive breakpoints
+   ========================================================= */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  --ink: #12203a;            /* main text colour */
+  --ink-soft: #55637a;       /* secondary text */
+  --brand: #1f6feb;          /* primary blue */
+  --brand-dark: #1547a1;
+  --brand-soft: #e8f0ff;
+  --accent: #0f9d76;         /* green accent */
+  --surface: #ffffff;
+  --surface-alt: #f5f8fd;
+  --border: #dde5f0;
+  --radius: 14px;
+  --radius-sm: 9px;
+  --shadow: 0 4px 18px rgba(18, 32, 58, 0.07);
+  --shadow-lift: 0 12px 28px rgba(18, 32, 58, 0.12);
+  --max-width: 1120px;
+}
+
+/* ---------- 2. Base and reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink);
+  background-color: var(--surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  line-height: 1.22;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.015em;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); }
+h3 { font-size: 1.13rem; }
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Visible outline for keyboard users */
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Skip link stays hidden until it receives keyboard focus */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--brand);
+  color: #fff;
+  font-weight: 600;
+  transition: top 0.18s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ---------- 3. Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.container.narrow {
+  max-width: 820px;
+}
+
+/* ---------- 4. Header and navigation ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 68px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.logo-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  color: #fff;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.site-nav a:hover {
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  text-decoration: none;
+}
+
+/* ---------- 5. Hero ---------- */
+.hero {
+  padding: 76px 0 64px;
+  background:
+    radial-gradient(1000px 420px at 82% -10%, #e4f0ff 0%, rgba(228, 240, 255, 0) 62%),
+    linear-gradient(180deg, #fbfdff 0%, #ffffff 100%);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-inner {
+  max-width: 960px;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-text {
+  max-width: 62ch;
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 28px 0 44px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.97rem;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+  background: var(--brand-dark);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn-ghost {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  border-color: var(--brand);
+  color: var(--brand-dark);
+}
+
+/* Quick jump cards */
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.jump-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+
+.jump-card:hover {
+  text-decoration: none;
+  transform: translateY(-4px);
+  border-color: var(--brand);
+  box-shadow: var(--shadow-lift);
+}
+
+.jump-icon {
+  font-size: 1.35rem;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.jump-title {
+  font-weight: 600;
+}
+
+.jump-desc {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+/* ---------- 6. Sections and cards ---------- */
+.section {
+  padding: 72px 0;
+}
+
+.section-alt {
+  background: var(--surface-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: 36px;
+}
+
+.section-tag {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.section-text {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+}
+
+.card h3 {
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.card-meta {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #7a8699;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+/* The link is pushed to the bottom of the card */
+.card-link {
+  margin-top: auto;
+  font-weight: 600;
+  font-size: 0.93rem;
+  color: var(--brand-dark);
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.note {
+  margin: 32px 0 0;
+  padding: 16px 20px;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--surface);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.note-warn {
+  border-left-color: #e2a03f;
+}
+
+/* ---------- 7. FAQ accordion ---------- */
+.faq-item {
+  margin-bottom: 12px;
+  padding: 4px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  padding: 16px 0;
+  font-weight: 600;
+  color: var(--ink);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Hide the default triangle marker in every browser */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--brand);
+  line-height: 1;
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+}
+
+.faq-item[open] summary {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+
+.faq-item p {
+  margin: 0 0 16px;
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+}
+
+/* ---------- 8. Footer ---------- */
+.site-footer {
+  padding: 52px 0 26px;
+  background: var(--ink);
+  color: #cdd7e5;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 28px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.footer-brand {
+  margin: 0 0 6px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.footer-text {
+  margin: 0;
+  max-width: 42ch;
+  font-size: 0.92rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.footer-links a,
+.back-top {
+  color: #cdd7e5;
+  font-size: 0.92rem;
+}
+
+.footer-links a:hover,
+.back-top:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+/* ---------- 9. Responsive breakpoints ---------- */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  body {
+    font-size: 16px;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .site-nav {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .site-nav ul {
+    flex-wrap: nowrap;
+    gap: 2px;
+  }
+
+  .site-nav a {
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding: 48px 0 44px;
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 18px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
